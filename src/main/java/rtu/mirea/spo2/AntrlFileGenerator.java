@@ -9,7 +9,8 @@ public class AntrlFileGenerator {
     public static void generateAntlrFile(ArrayList<Pair<Pair<String, String>, ArrayList<Pair<String, String>>>> productions, HashSet<Pair<String, String>> fragrments){
         final String dir = System.getProperty("user.dir");
         System.out.println(dir);
-        try(FileWriter writer = new FileWriter(dir + "\\src\\main\\antlr4\\church_lang.txt", false)){
+        try(FileWriter writer = new FileWriter(dir + "\\src\\main\\antlr4\\ChristianC.g4", false)){
+            writer.write("grammar ChristianC ;\n");
             for(var production : productions){
                 if(fragrments.contains(production.getFirst())){
                     writer.write("fragment ");
@@ -17,7 +18,7 @@ public class AntrlFileGenerator {
                 writer.write(production.getFirst().getSecond() + " : ");
                 for(var term : production.getSecond()){
                     if(term.getFirst().equals("TERMINAL") && isRegEx(term.getSecond())){
-                        writer.write(term.getSecond().substring(0, term.getSecond().length()-2) + " ");
+                        writer.write(term.getSecond().substring(2, term.getSecond().length()-2) + " ");
                     }
                     else{
                         writer.write(term.getSecond() + " ");
