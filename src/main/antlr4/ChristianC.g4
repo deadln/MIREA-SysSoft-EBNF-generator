@@ -39,4 +39,4 @@ fragment OP : '+' | '-' | '*' | '/' | '#' ;
 var : LETTER LETTER_OR_DIGIT * ;
 fragment LETTER : [a-zA-Zа-яА-Я_] ;
 fragment LETTER_OR_DIGIT : [a-zA-Zа-яА-Я_0-9] ;
-WS : [\t\r\n\u000C]+ ;
+WS : [\t\r\n\u000C]+ -> skip;
